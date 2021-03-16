@@ -76,6 +76,9 @@ jobs:
         while true; do
           sleep 10;
           docker service logs ${project}_webui 2>& 1 | grep 'WEBUI running on port' && break;
+          docker service logs | head;
+          echo =====
+          docker service tail | tail;
         done;
         while true; do
           sleep 10;
