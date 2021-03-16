@@ -159,16 +159,16 @@ jobs:
         pattern='Ready to accept connections'
         while true; do
           sleep 10;
-          kubectl logs ds/${app} 2>& 1 | grep "${pattern}" && break;
-        done;
-        app=webui
-        pattern='WEBUI running on port'
-        while true; do
-          sleep 10;
           kubectl logs deploy/${app} 2>& 1 | grep "${pattern}" && break;
         done;
         app=rng
         pattern='Running on'
+        while true; do
+          sleep 10;
+          kubectl logs ds/${app} 2>& 1 | grep "${pattern}" && break;
+        done;
+        app=webui
+        pattern='WEBUI running on port'
         while true; do
           sleep 10;
           kubectl logs deploy/${app} 2>& 1 | grep "${pattern}" && break;
