@@ -31,10 +31,6 @@ jobs:
         done;
         while true; do
           sleep 10;
-          docker logs webui 2>& 1 | grep 'WEBUI running on port' && break;
-        done;
-        while true; do
-          sleep 10;
           docker logs hasher 2>& 1 | grep '== Sinatra .* has taken the stage on .* for development with backup from Thin' && break;
         done;
         while true; do
@@ -44,6 +40,10 @@ jobs:
         while true; do
           sleep 10;
           docker logs rng 2>& 1 | grep 'Running on' && break;
+        done;
+        while true; do
+          sleep 10;
+          docker logs webui 2>& 1 | grep 'WEBUI running on port' && break;
         done;
         while true; do
           sleep 10;
@@ -75,38 +75,23 @@ jobs:
         docker stack deploy -c ${compose} ${project}
         while true; do
           sleep 10;
-          docker service logs ${project}_webui 2>& 1 | grep 'WEBUI running on port' && break;
-          docker service logs ${project}_webui 2>& 1 | head;
-          echo =====
-          docker service logs ${project}_webui 2>& 1 | tail;
-        done;
-        while true; do
-          sleep 10;
           docker service logs ${project}_hasher 2>& 1 | grep '== Sinatra .* has taken the stage on .* for development with backup from Thin' && break;
-          docker service logs ${project}_hasher 2>& 1 | head;
-          echo =====
-          docker service logs ${project}_hasher 2>& 1 | tail;
         done;
         while true; do
           sleep 10;
           docker service logs ${project}_redis 2>& 1 | grep 'Ready to accept connections' && break;
-          docker service logs ${project}_redis 2>& 1 | head;
-          echo =====
-          docker service logs ${project}_redis 2>& 1 | tail;
         done;
         while true; do
           sleep 10;
           docker service logs ${project}_rng 2>& 1 | grep 'Running on' && break;
-          docker service logs ${project}_rng 2>& 1 | head;
-          echo =====
-          docker service logs ${project}_rng 2>& 1 | tail;
+        done;
+        while true; do
+          sleep 10;
+          docker service logs ${project}_webui 2>& 1 | grep 'WEBUI running on port' && break;
         done;
         while true; do
           sleep 10;
           docker service logs ${project}_worker 2>& 1 | grep 'Coin found' && break;
-          docker service logs ${project}_worker 2>& 1 | head;
-          echo =====
-          docker service logs ${project}_worker 2>& 1 | tail;
         done;      
   kubernetes:
     runs-on: ubuntu-18.04
