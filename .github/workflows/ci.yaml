@@ -233,7 +233,7 @@ jobs:
                                 sed -i '/imagePullPolicy/s/Always/Never/' ${kube_compose};
                 -
                         name: kubectl apply
-                        run: kubectl apply -f ${compose};
+                        run: kubectl apply -f ${kube_compose};
                 -
                         name: kubectl logs hasher
                         run: |
