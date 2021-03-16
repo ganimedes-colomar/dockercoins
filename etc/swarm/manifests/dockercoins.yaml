@@ -37,7 +37,7 @@ services:
       test: wget -q --spider localhost:8080
       timeout: 1s
     #para diferentes microservicios
-    image: macarenasre/dockercoins:latest-hasher
+    image: terferre/dockercoins:latest-hasher
     # 1 proyecto x MS --> image: macarenasre/dockercoins-hasher:latest
     networks:
       #la que hemos declarado en networks
@@ -96,7 +96,7 @@ services:
       start_period: 30s
       test: wget -q --spider localhost:8080
       timeout: 1s
-    image: macarenasre/dockercoins:latest-rng
+    image: terferre/dockercoins:latest-rng
     networks:
       #la que hemos declarado en networks
       - rng
@@ -125,7 +125,7 @@ services:
       #podemos comprobarlo con docker run --rm <nombre_imagen> which curl
       test: curl -f localhost:8080
       timeout: 1s
-    image: macarenasre/dockercoins:latest-webui
+    image: terferre/dockercoins:latest-webui
     networks:
       #nos conectamos a redis asi que incluimos una interfaz directa (se podria usar un proxy en DMZ)
       - redis
@@ -155,7 +155,7 @@ services:
       start_period: 30s
       test: netstat -nt | grep ESTABLISHED | grep -q 6379
       timeout: 1s
-    image: macarenasre/dockercoins:latest-worker
+    image: terferre/dockercoins:latest-worker
     networks:
       #listar las que necesita usar
       - hasher
