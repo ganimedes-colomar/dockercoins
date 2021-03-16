@@ -71,10 +71,10 @@ spec:
         -
           mountPath: /data
           name: redis
-    volumes:
-    -
-      name: redis
-      emptyDir: {}
+      volumes:
+      -
+        name: redis
+        emptyDir: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
