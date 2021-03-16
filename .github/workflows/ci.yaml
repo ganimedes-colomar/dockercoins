@@ -202,7 +202,7 @@ jobs:
                         run: |
                                 sudo install -DT -o $(id -u) -g $(id -g) \
                                                 /etc/kubernetes/admin.conf \
-                                                ~/.kube/config/admin.conf;
+                                                ~/.kube/config;
                 -
                         name: kubectl apply calico
                         run: kubectl apply -f https://docs.projectcalico.org/v3.17/manifests/calico.yaml;
