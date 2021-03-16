@@ -58,7 +58,9 @@ jobs:
       run: |
         set -x
         #creo imagen image
-        docker build -t terferre/dockercoins:testing .
+        for app in hasher rng webui worker; do
+          docker build -t terferre/dockercoins:testing-${app} ${app}
+        done;
         docker swarm init
         project=dockercoins
         compose=etc/swarm/manifests/${project}.yaml
